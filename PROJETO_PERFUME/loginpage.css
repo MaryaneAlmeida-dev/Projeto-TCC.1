@@ -1,0 +1,80 @@
+body {
+    background-color: black; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* ocupa toda a tela */
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    background-color: white; /* fundo do quadrado */
+    color: black; /* texto dentro do quadrado */
+    padding: 30px;
+    border-radius: 10px; /* cantos arredondados */
+    box-shadow: 0 0 10px rgba(0,0,0,0.5); /* sombra opcional */
+    width: 400px; /* largura do quadrado */
+    text-align: center;
+}
+  h1 {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  h2 {
+    font-size: 18px;
+    font-weight: normal;
+    margin-bottom: 25px;
+  }
+  
+  label {
+    display: block;
+    text-align: left;
+    font-size: 12px;
+    font-weight: bold;
+    margin-top: 15px;
+  }
+  
+  input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ddd;
+    background-color: #f2f2f2;
+  }
+  
+  .forgot {
+    text-align: right;
+    font-size: 11px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+  }
+  
+  .btn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: none;
+    background-color: #080808;
+    cursor: pointer;
+    font-weight: bold;
+    color: white;
+  }
+  
+  .btn-dark {
+    background-color: black;
+    color: white;
+  }
+  
+  .register-text {
+    margin: 20px 0 5px;
+    font-size: 13px;
+  }
+  
+  a {
+    text-decoration: none;
+    color: black;
+  }
