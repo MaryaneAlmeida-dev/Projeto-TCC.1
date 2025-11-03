@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Perfil - Belle Parfum</title>
+    <link rel="stylesheet" href="./profile.css">
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+    <section>
+        <header>
+              <div class="promocao">
+                <h2>CADASTRE-SE E GANHE 10% DE DESCONTO NA PRIMEIRA COMPRA!</h2>
+            </div>
+
+            <nav>
+                <div class="header">
+                    <div class="logo">BELLE</div>
+
+                  
+                    <div class="search-bar">
+                    <img src="./Styles/header_styles/lupa.png" alt="Buscar">
+                    <input type="text" placeholder="Digite aqui o que procura...">
+                    </div>
+
+                    <div class="icons">
+                    <a href="./loginpage.html">
+                        <img src="./Styles/header_styles/perfil.png" alt="Usuário" class="usuario">
+                    </a>
+                    
+                    <img src="./Styles/header_styles/carrinho.png" alt="Carrinho" class="carrinho">
+                    </div>
+                </div>
+        </nav>
+        </header>
+     </section>
+
+    <main class="profile-main">
+        <div class="profile-container">
+            <div class="profile-header">
+                <h1>Meu Perfil</h1>
+                <div class="profile-avatar">
+                    <img src="./Styles/header_styles/perfil.png" alt="Avatar do usuário">
+                </div>
+            </div>
+
+            <div class="profile-content">
+                <div class="profile-info" id="profileInfo">
+                    <!-- dados do usuario serão carregados aqui via JavaScript -->
+                    <div class="loading-profile">
+                        <div class="loading-spinner"></div>
+                        <p>Carregando informações do perfil...</p>
+                    </div>
+                </div>
+
+                <div class="profile-actions">
+                    <button id="logoutBtn" class="btn btn-logout">
+                        Sair da Conta
+                    </button>
+                    
+                    <a href="/" class="btn btn-secondary">
+                        Voltar à Loja
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <section>
+            <div class="footer">
+                <div>
+                    <img class="foto__logo" alt="Logo Foto" src="./Styles/footer/footer_logo.png">
+                    <div> 
+                        <a class="sobre__nos" href="#">sobre nós</a>
+                        <p class="p">central de ajuda</p>
+                        <p class="p2">consulte sua entrega</p>
+                    </div>
+                </div>
+                
+                <div>
+                    <img class="foto__apps" alt="Logos de Aplicativos" src="./Styles/footer/logos.png">
+                    <p class="termos">Políticas de Privacidade | Termos de Uso</p>
+                </div>
+                
+                <div>
+                    <img class="pagamentos" alt="Formas De Pagamentos" src="./Styles/footer/formas de pagamento.png">
+                </div>
+            </div>   
+        </section>
+    </footer>
+
+    <script src="./static/js/auth.js"></script>
+    <script src="./static/js/profile.js"></script>
+</body>
+</html>
+

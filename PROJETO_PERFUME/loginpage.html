@@ -11,12 +11,12 @@
     <h1>BELLE</h1>
     <h2>LOGIN</h2>
 
-    <form>
+    <form id="loginForm">
       <label for="email">EMAIL OU CPF</label>
-      <input type="text" id="email" placeholder="Digite seu e-mail ou CPF">
+      <input type="text" id="email" name="email" placeholder="Digite seu e-mail ou CPF" required>
 
       <label for="senha">SENHA</label>
-      <input type="password" id="senha" placeholder="Digite sua senha">
+      <input type="password" id="senha" name="senha" placeholder="Digite sua senha" required>
       <div class="forgot"><a href="#">Esqueceu a senha?</a></div>
 
       <button type="submit" class="btn">ENTRAR</button>
@@ -27,6 +27,7 @@
 
     <a href="cadastro.html" class="btn btn-dark">CADASTRE-SE</a>
   </div>
+
+  <script src="./static/js/auth.js"></script>
 </body>
 </html>
-
