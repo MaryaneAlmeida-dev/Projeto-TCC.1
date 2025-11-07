@@ -6,6 +6,10 @@
     padding: 0;
 }
 
+body {
+    overflow-x: hidden; /* Impede a rolagem horizontal */
+}
+
 #principal{
   text-align: center;
 }
@@ -28,7 +32,18 @@
     transition: all 0.3s ease;
     justify-content: center;
     position: relative;
-  
+    box-sizing: border-box; /* Garante que padding não cause overflow */
+}
+
+.lancamento-titulo {
+    position: absolute;
+    top: 10px; /* Ajuste conforme necessário */
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 24px;
+    color: #000; /* Cor do texto */
+    font-weight: bold;
+    z-index: 10; /* Para garantir que fique acima de outros elementos */
 }
 
 #text {
@@ -41,12 +56,12 @@
   margin-top: 85px;
   position: absolute;
   top: 18%;
-  right: 230px;
+  right: 200px;
   transform: translateY(-50%);
   background-color: rgb(225, 10, 161);
   
-
 }
+
 .promocao{
     background-color: #000000;
     color: #f5f5f5;
@@ -60,14 +75,13 @@
   background-color: #f4f4f4;
 }
 
-/* Logo */
 .logo {
   font-size: 40px;
   font-weight: bold;
   font-family: "Times New Roman", serif;
 }
 
-/* Barra de pesquisa */
+
 .search-bar {
   flex: 1;
   margin: 0 40px;
@@ -162,6 +176,7 @@
     margin-top: 4em;
     justify-content: center;
     transition: all 0.3s ease;
+    box-sizing: border-box; 
 }
 
 .imagem-produto {
@@ -207,9 +222,12 @@ h2 {
 
 .desconto{
     background-color: #000000;
-    margin-left: 250px;
+    /* Removendo margin-left fixo para evitar largura excessiva */
     margin-top: 3px;
     color: #f5f5f5;
+    display: inline-block; /* Para que a largura se ajuste ao conteúdo */
+    padding: 2px 5px; /* Adicionando um pequeno padding para melhor visualização */
+    border-radius: 3px;
 }
 
 .parcelasdior {
@@ -232,12 +250,14 @@ h2 {
 }
 
 .promocaoescrita{
-    padding-left: 40px;
+    text-align: center;
     margin-top: 70px;
     font-weight: 100;
     margin-bottom: 30px;
     font-size: 28px;
-    margin-left: 110px;
+    
+    padding-left: 0;
+    margin-left: 0;
 }
 
 .footer{
@@ -335,6 +355,38 @@ h2 {
     padding-left: 0;
     margin: 15px auto;
   }
+  
+  .produto1 {
+    width: 95%; /* Ajuste para ocupar mais espaço em telas menores */
+    max-width: 100%; /* Garante que não ultrapasse a largura da tela */
+    flex-direction: column; /* Empilha os elementos verticalmente */
+    align-items: center; /* Centraliza os itens horizontalmente na coluna */
+    padding: 15px;
+    box-sizing: border-box; /* Garante que padding não cause overflow */
+  }
+  
+  .produto1 img {
+    max-width: 100%; /* Garante que a imagem não ultrapasse o container */
+    height: auto;
+  }
+  
+  #comprar_1 {
+    position: static; /* Remove o posicionamento absoluto */
+    transform: none;
+    margin-top: 15px;
+    width: 80%; /* Ajusta a largura do botão */
+  }
+  
+  .lancamento-titulo {
+    position: static; /* Remove o posicionamento absoluto */
+    transform: none;
+    margin-bottom: 10px;
+  }
+  
+  #text {
+    top: auto; /* Remove o top fixo */
+    margin-top: 10px;
+  }
 }
 
 
@@ -349,13 +401,15 @@ h2 {
 
   .all,
   .promocaoescrita {
-    margin-left: 20px;
+    text-align: center; /* Garante a centralização em telas menores */
+    margin-left: 0; /* Remove margem lateral fixa */
     font-size: 22px;
   }
 
   .produto {
     width: 90%;
     margin: 20px auto;
+    box-sizing: border-box; /* Garante que padding não cause overflow */
   }
 
   .imagem-produto {
@@ -369,6 +423,12 @@ h2 {
 
   .foto__logo {
     margin: 20px auto;
+  }
+  
+  .produto1 {
+    width: 95%;
+    max-width: 100%;
+    align-items: center; /* Garantindo a centralização em telas menores */
   }
 }
 
@@ -398,8 +458,15 @@ h2 {
 
   .btn {
     width: 100%;
+    display: block; /* Garante que o <a> ocupe a largura total */
     padding: 12px;
     font-size: 16px;
+  }
+  
+  /* Regra específica para os botões pretos dentro de .produto */
+  .produto .btn {
+    width: 80%; /* Reduz a largura para um tamanho central */
+    margin: 0 auto; /* Centraliza o botão */
   }
 
   .imagem__footer,
@@ -411,5 +478,11 @@ h2 {
   .termos {
     padding-left: 0;
     font-size: 12px;
+  }
+  
+  .produto1 {
+    width: 95%;
+    max-width: 100%;
+    align-items: center; /* Garantindo a centralização em telas menores */
   }
 }
