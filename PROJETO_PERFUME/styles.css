@@ -20,22 +20,23 @@ body {
 }
 
 .produto1 {
-    margin: 0 auto; /* Centraliza horizontalmente */
+    margin: 0 auto; 
     text-align: center;
     background: #fff;
     padding: 30px;
     border-radius: 20px;
     box-shadow: 0px 4px 15px rgba(0,0,0,0.1);
     width: 50rem;
-    max-width: 90%; /* Limita a largura em telas muito grandes */
+    max-width: 90%; 
     display: flex;
     flex-direction: row; /* Layout em linha para telas maiores */
-    align-items: center; /* Alinha verticalmente */
-    justify-content: center; /* Centraliza o conteúdo */
+    align-items: center; 
+    justify-content: center; 
     gap: 30px; /* Espaçamento entre os itens */
     transition: all 0.3s ease;
     box-sizing: border-box;
     position: relative;
+    top: 3rem;
 }
 
 .lancamento-titulo {
