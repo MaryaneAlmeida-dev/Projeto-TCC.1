@@ -3,18 +3,18 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh; /* ocupa toda a tela */
+    height: 100vh; 
     margin: 0;
     font-family: Arial, sans-serif;
 }
 
 .container {
-    background-color: white; /* fundo do quadrado */
-    color: black; /* texto dentro do quadrado */
+    background-color: white; 
+    color: black; 
     padding: 30px;
-    border-radius: 10px; /* cantos arredondados */
-    box-shadow: 0 0 10px rgba(0,0,0,0.5); /* sombra opcional */
-    width: 400px; /* largura do quadrado */
+    border-radius: 10px; 
+    box-shadow: 0 0 10px rgba(0,0,0,0.5); 
+    width: 400px;
     text-align: center;
 }
   h1 {
@@ -79,7 +79,6 @@ body {
     color: black;
   }
 
-  /* Mensagens de feedback */
   .message {
     position: fixed;
     top: 20px;

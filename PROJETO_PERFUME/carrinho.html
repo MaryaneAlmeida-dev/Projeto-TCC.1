@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./carrinho.css">
+    <title>Carrinho - Belle Parfum</title>
+</head>
+
+<body>
+    <section>
+        <header>
+            <div class="promocao">
+                <h2>CADASTRE-SE E GANHE 10% DE DESCONTO NA PRIMEIRA COMPRA!</h2>
+            </div>
+
+            <nav>
+                <div class="header">
+                    <div class="logo">
+                        <a href="./index.html" style="text-decoration: none; color: inherit;">BELLE</a>
+                    </div>
+
+                    <div class="search-bar">
+                        <img src="./Styles/header_styles/lupa.png" alt="Buscar">
+                        <input type="text" placeholder="Digite aqui o que procura...">
+                    </div>
+
+                    <div class="icons">
+                        <a href="./loginpage.html">
+                            <img src="./Styles/header_styles/perfil.png" alt="Usuário" class="usuario">
+                        </a>
+                        
+                        <a href="./carrinho.html" class="carrinho-link">
+                            <img src="./Styles/header_styles/carrinho.png" alt="Carrinho" class="carrinho">
+                            <span class="carrinho-contador" style="display: none;">0</span>
+                        </a>
+                    </div>
+                </div>
+            </nav>
+        </header>
+    </section>
+
+    <main class="carrinho-container">
+        <h1 class="carrinho-titulo">Meu Carrinho</h1>
+        
+        <div class="carrinho-content">
+            <div class="produtos-section">
+                <div id="produtos-lista">
+                    <!-- produtos serão inseridos aqui via JavaScript -->
+                </div>
+                
+                <div id="carrinho-vazio" class="carrinho-vazio" style="display: none;">
+                    <img src="./Styles/header_styles/carrinho.png" alt="Carrinho vazio" class="carrinho-vazio-icon">
+                    <h3>Seu carrinho está vazio</h3>
+                    <p>Adicione produtos ao seu carrinho para continuar comprando</p>
+                    <a href="./index.html" class="btn-continuar">Continuar Comprando</a>
+                </div>
+            </div>
+
+            <div class="resumo-section">
+                <div class="resumo-card">
+                    <h3>Resumo do Pedido</h3>
+                    
+                    <div class="resumo-linha">
+                        <span>Subtotal:</span>
+                        <span id="subtotal">R$ 0,00</span>
+                    </div>
+                    
+                    <div class="resumo-linha">
+                        <span>Frete:</span>
+                        <span class="frete-gratis">Grátis</span>
+                    </div>
+                    
+                    <hr class="resumo-divider">
+                    
+                    <div class="resumo-linha total">
+                        <span>Total:</span>
+                        <span id="total">R$ 0,00</span>
+                    </div>
+                    
+                    <button class="btn-finalizar" id="btn-finalizar">
+                        FINALIZAR COMPRA
+                    </button>
+                    
+                    <a href="./index.html" class="btn-continuar-comprando">
+                        Continuar Comprando
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+
+    <script src="./static/js/carrinho.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const produtosLista = document.getElementById('produtos-lista');
+            const carrinhoVazio = document.getElementById('carrinho-vazio');
+            const subtotalElement = document.getElementById('subtotal');
+            const totalElement = document.getElementById('total');
+            const btnFinalizar = document.getElementById('btn-finalizar');
+
+            function renderizarCarrinho() {
+                const produtos = carrinhoManager.obterProdutos();
+                
+                if (produtos.length === 0) {
+                    produtosLista.style.display = 'none';
+                    carrinhoVazio.style.display = 'block';
+                    subtotalElement.textContent = 'R$ 0,00';
+                    totalElement.textContent = 'R$ 0,00';
+                    return;
+                }
+
+                produtosLista.style.display = 'block';
+                carrinhoVazio.style.display = 'none';
+                
+                produtosLista.innerHTML = '';
+                
+                produtos.forEach(produto => {
+                    const produtoElement = document.createElement('div');
+                    produtoElement.className = 'produto-carrinho';
+                    produtoElement.innerHTML = `
+                        <div class="produto-imagem">
+                            <img src="${produto.imagem}" alt="${produto.nome}">
+                        </div>
+                        <div class="produto-info">
+                            <h3>${produto.nome}</h3>
+                            <p class="produto-descricao">${produto.descricao}</p>
+                            <p class="produto-preco">R$ ${produto.preco.toFixed(2).replace('.', ',')}</p>
+                        </div>
+                        <div class="produto-controles">
+                            <div class="quantidade-controle">
+                                <button class="btn-qtd" onclick="alterarQuantidade('${produto.id}', ${produto.quantidade - 1})">-</button>
+                                <span class="quantidade">${produto.quantidade}</span>
+                                <button class="btn-qtd" onclick="alterarQuantidade('${produto.id}', ${produto.quantidade + 1})">+</button>
+                            </div>
+                            <button class="btn-remover" onclick="removerProduto('${produto.id}')">
+                                Remover
+                            </button>
+                        </div>
+                        <div class="produto-total">
+                            R$ ${(produto.preco * produto.quantidade).toFixed(2).replace('.', ',')}
+                        </div>
+                    `;
+                    produtosLista.appendChild(produtoElement);
+                });
+
+                const total = carrinhoManager.calcularTotal();
+                subtotalElement.textContent = carrinhoManager.formatarPreco(total);
+                totalElement.textContent = carrinhoManager.formatarPreco(total);
+            }
+
+            window.alterarQuantidade = function(produtoId, novaQuantidade) {
+                if (novaQuantidade <= 0) {
+                    removerProduto(produtoId);
+                    return;
+                }
+                
+                carrinhoManager.atualizarQuantidade(produtoId, novaQuantidade);
+                renderizarCarrinho();
+            };
+
+            window.removerProduto = function(produtoId) {
+                carrinhoManager.removerProduto(produtoId);
+                renderizarCarrinho();
+                mostrarNotificacao('Produto removido do carrinho');
+            };
+
+            btnFinalizar.addEventListener('click', function() {
+                const produtos = carrinhoManager.obterProdutos();
+                if (produtos.length === 0) {
+                    mostrarNotificacao('Seu carrinho está vazio!', 'erro');
+                    return;
+                }
+                
+                mostrarNotificacao('Funcionalidade de pagamento em desenvolvimento!');
+            });
+
+            renderizarCarrinho();
+        });
+    </script>
+</body>
+</html>

@@ -1,4 +1,3 @@
-/* Estilos para página de perfil */
 
 .profile-main {
     min-height: 80vh;
@@ -173,7 +172,6 @@
     font-size: 1.1rem;
 }
 
-/* Mensagens de feedback */
 .message {
     position: fixed;
     top: 20px;
@@ -221,7 +219,6 @@
     }
 }
 
-/* Responsividade */
 @media (max-width: 768px) {
     .profile-main {
         padding: 1rem 0.5rem;

@@ -29,7 +29,10 @@
                         <img src="./Styles/header_styles/perfil.png" alt="Usuário" class="usuario">
                     </a>
                     
-                    <img src="./Styles/header_styles/carrinho.png" alt="Carrinho" class="carrinho">
+                    <a href="./carrinho.html" class="carrinho-link">
+                        <img src="./Styles/header_styles/carrinho.png" alt="Carrinho" class="carrinho">
+                        <span class="carrinho-contador" style="display: none;">0</span>
+                    </a>
                     </div>
                 </div>
         </nav>
@@ -59,13 +62,13 @@
       <div class="quantity">
         <span class="qtd-label">QTD</span>
         <div class="qtd-control">
-          <button class="btn">-</button>
-          <input type="text" value="1">
-          <button class="btn">+</button>
+          <button class="btn" id="diminuir-qtd">-</button>
+          <input type="text" value="1" id="quantidade-input" readonly>
+          <button class="btn" id="aumentar-qtd">+</button>
         </div>
       </div>
 
-      <button class="add-cart">ADICIONAR AO CARRINHO</button>
+      <button class="add-cart" id="adicionar-carrinho">ADICIONAR AO CARRINHO</button>
     </div>
   </main>
 
@@ -118,4 +121,65 @@
             </div>   
     </section>
 </footer>
+
+<script src="./static/js/carrinho.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const quantidadeInput = document.getElementById('quantidade-input');
+    const btnDiminuir = document.getElementById('diminuir-qtd');
+    const btnAumentar = document.getElementById('aumentar-qtd');
+    const btnAdicionarCarrinho = document.getElementById('adicionar-carrinho');
+    const precoElement = document.querySelector('.price');
+    const parcelasElement = document.querySelector('.installments');
+
+    let quantidade = 1;
+    const precoUnitario = 915.00;
+
+    // Função para atualizar a exibição
+    function atualizarExibicao() {
+        quantidadeInput.value = quantidade;
+        const precoTotal = precoUnitario * quantidade;
+        const parcelaMensal = precoTotal / 10;
+        
+        precoElement.textContent = `R$ ${precoTotal.toFixed(2).replace('.', ',')}`;
+        parcelasElement.textContent = `ou 10x de R$ ${parcelaMensal.toFixed(2).replace('.', ',')}`;
+    }
+
+    // Diminuir quantidade
+    btnDiminuir.addEventListener('click', function() {
+        if (quantidade > 1) {
+            quantidade--;
+            atualizarExibicao();
+        }
+    });
+
+    // Aumentar quantidade
+    btnAumentar.addEventListener('click', function() {
+        quantidade++;
+        atualizarExibicao();
+    });
+
+    // Adicionar ao carrinho
+    btnAdicionarCarrinho.addEventListener('click', function() {
+        const produto = {
+            id: 'dior-jadore',
+            nome: 'DIOR',
+            descricao: "j'adore feminino eau de toilette 100ml",
+            preco: precoUnitario,
+            quantidade: quantidade,
+            imagem: './Styles/page_compra/nova.png'
+        };
+
+        carrinhoManager.adicionarProduto(produto);
+        mostrarNotificacao(`${quantidade} ${quantidade === 1 ? 'produto adicionado' : 'produtos adicionados'} ao carrinho!`);
+        
+        // Reset quantidade para 1 após adicionar
+        quantidade = 1;
+        atualizarExibicao();
+    });
+
+    // Inicializar exibição
+    atualizarExibicao();
+});
+</script>
 </html>
